@@ -8,6 +8,11 @@ flake providing the configurations for my personal infrastructure
 
 ---
 
+## Remote rebuild
+
+- `nixos-rebuild switch --flake .#<host> --target-host root@<ip> --build-host root@<ip>`
+---
+
 ## live ISO
 
 - configuration: `hosts/live/iso`
@@ -19,9 +24,3 @@ flake providing the configurations for my personal infrastructure
 - configuration: `hosts/live/lxc`
 - latest pre-built file: https://files.nya.vodka/pub/nix/lxc-template/latest.tar.xz
 - build: `nixos-rebuild build-image --image-variant proxmox-lxc --flake .#lxcTemplate`
-
----
-
-## Remote rebuild
-
-- `nixos-rebuild switch --flake .#<host> --target-host root@<ip> --build-host root@<ip>`

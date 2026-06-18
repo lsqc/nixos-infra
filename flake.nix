@@ -1,5 +1,5 @@
 {
-  description = "flake";
+  description = "infra flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
@@ -11,26 +11,6 @@
     };
 
     disko.url = "github:nix-community/disko";
-
-    home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
-    niri = {
-      url = "github:sodiboo/niri-flake/very-refactor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    helium = {
-      url = "github:amaanq/helium-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
@@ -57,12 +37,6 @@
         agenix.nixosModules.default
         disko.nixosModules.disko
       ];
-      commonHomeManagerModules = [
-        { _module.args.inputs = inputs; }
-        ./home/lsqc
-        niri.homeModules.niri
-      ];
-
     in
     {
       nixosConfigurations = {
@@ -70,18 +44,6 @@
         #
         # Configurations for vms and lxcs
         #
-        cookie = nixpkgs.lib.nixosSystem {
-          inherit system; # system = "x86_64-linux";
-
-          modules = commonModules ++ [ ./hosts/vm/cookie ];
-        };
-
-        atm = nixpkgs.lib.nixosSystem {
-          inherit system; # system = "x86_64-linux";
-
-          modules = commonModules ++ [ ./hosts/lxc/atm ];
-        };
-
         dns1 = nixpkgs.lib.nixosSystem {
           inherit system; # system = "x86_64-linux";
 
@@ -100,18 +62,6 @@
           modules = commonModules ++ [ ./hosts/lxc/dns/dns3 ];
         };
 
-        immich = nixpkgs.lib.nixosSystem {
-          inherit system; # system = "x86_64-linux";
-
-          modules = commonModules ++ [ ./hosts/lxc/immich ];
-        };
-
-        ntfy = nixpkgs.lib.nixosSystem {
-          inherit system; # system = "x86_64-linux";
-
-          modules = commonModules ++ [ ./hosts/lxc/ntfy ];
-        };
-
         postgres-1 = nixpkgs.lib.nixosSystem {
           inherit system;
 
@@ -122,16 +72,6 @@
 
           inherit system;
           modules = commonModules ++ [ ./hosts/lxc/paperless ];
-        };
-
-        cerberus = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = commonModules ++ [
-
-            ./hosts/vm/cerberus/disko-config.nix
-            ./hosts/vm/cerberus
-          ];
         };
 
         hydra = nixpkgs.lib.nixosSystem {
@@ -154,16 +94,6 @@
           ];
         };
 
-        IIvy = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = commonModules ++ [
-
-            ./hosts/vm/IIvy/disko-config.nix
-            ./hosts/vm/IIvy
-          ];
-        };
-
         hachi = nixpkgs.lib.nixosSystem {
           inherit system;
 
@@ -173,6 +103,7 @@
             ./hosts/vm/hachi/disko-config.nix
           ];
         };
+
         prometheus = nixpkgs.lib.nixosSystem {
           inherit system;
 
@@ -195,15 +126,6 @@
         #
         # Configurations for non-virtualized systems
         #
-
-        ivy = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = commonModules ++ [
-
-            ./hosts/hw/x86_64/ivy
-          ];
-        };
 
         gemini = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -230,36 +152,6 @@
           modules = commonModules ++ [
 
             ./hosts/hw/x86_64/cheese
-          ];
-        };
-        uwubox = nixpkgs.lib.nixosSystem {
-          inherit system; # system = "x86_64-linux";
-
-          modules = commonModules ++ [
-            niri.nixosModules.niri
-
-            ./hosts/hw/x86_64/uwubox
-          ];
-        };
-
-        t420 = nixpkgs.lib.nixosSystem {
-          inherit system; # system = "x86_64-linux";
-
-          modules = commonModules ++ [
-
-            ./hosts/hw/x86_64/t420
-            ./hosts/hw/x86_64/t420/disko-config.nix
-
-            nixos-hardware.nixosModules.lenovo-thinkpad-t420
-          ];
-        };
-
-        antlia = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = commonModules ++ [
-
-            ./hosts/hw/x86_64/antlia
           ];
         };
 
@@ -290,29 +182,6 @@
           modules = [
             ./hosts/live/lxc
             agenix.nixosModules.default
-          ];
-        };
-      };
-
-      homeConfigurations = {
-        "antlia" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = commonHomeManagerModules ++ [
-            {
-              host = "antlia";
-              theme = import ./home/lsqc/theme-settings.nix;
-            }
-          ];
-        };
-
-        "t420" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = commonHomeManagerModules ++ [
-            {
-
-              host = "t420";
-              theme = import ./home/lsqc/theme-settings.nix;
-            }
           ];
         };
       };

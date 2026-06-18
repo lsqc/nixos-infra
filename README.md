@@ -1,6 +1,6 @@
 # nix
 
-flake containing my home manager configurations and personal infrastructure hosted in the `pc.nya.vodka` and `catbox.nya.vodka` clusters
+flake providing the configurations for my personal infrastructure
 
 ## Remote install
 

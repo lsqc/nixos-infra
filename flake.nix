@@ -23,8 +23,6 @@
       nixpkgs,
       agenix,
       disko,
-      home-manager,
-      niri,
       nixos-hardware,
       ...
     }:

@@ -1,4 +1,8 @@
 { ... }:
+
+let
+  config = import ../../../../common/config.nix;
+in
 {
   services.prometheus = {
     enable = true;
@@ -8,36 +12,36 @@
         static_configs = [
           {
             targets = [
-              "dns-4.pc.ip.nya.vodka:9092"
-              "dns-5.pc.ip.nya.vodka:9092"
-              "dns-6.pc.ip.nya.vodka:9092"
+              "${config.mkLabFQDN "dns-4"}:9092"
+              "${config.mkLabFQDN "dns-5"}:9092"
+              "${config.mkLabFQDN "dns-6"}:9092"
             ];
           }
         ];
       }
       {
         job_name = "prometheus";
-        static_configs = [ { targets = [ "prometheus.pc.ip.nya.vodka:9092" ]; } ];
+        static_configs = [ { targets = [ "${config.mkLabFQDN "prometheus"}:9092" ]; } ];
       }
       {
         job_name = "git";
-        static_configs = [ { targets = [ "hachi.pc.ip.nya.vodka:9092" ]; } ];
+        static_configs = [ { targets = [ "${config.mkLabFQDN "hachi"}:9092" ]; } ];
       }
       {
         job_name = "torrent";
-        static_configs = [ { targets = [ "torrent.pc.ip.nya.vodka:9092" ]; } ];
+        static_configs = [ { targets = [ "${config.mkLabFQDN "torrent"}:9092" ]; } ];
       }
       {
         job_name = "hydra";
-        static_configs = [ { targets = [ "hydra.pc.ip.nya.vodka:9092" ]; } ];
+        static_configs = [ { targets = [ "${config.mkLabFQDN "hydra"}:9092" ]; } ];
       }
       {
         job_name = "mastodon";
-        static_configs = [ { targets = [ "ash.pc.ip.nya.vodka:9092" ]; } ];
+        static_configs = [ { targets = [ "${config.mkLabFQDN "ash"}:9092" ]; } ];
       }
       {
         job_name = "paperless";
-        static_configs = [ { targets = [ "paperless.pc.ip.nya.vodka:9092" ]; } ];
+        static_configs = [ { targets = [ "${config.mkLabFQDN "paperless"}:9092" ]; } ];
       }
     ];
   };

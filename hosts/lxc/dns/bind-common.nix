@@ -28,7 +28,7 @@ in
         ];
         file =
           let
-            zoneTemplate = ../../../dns/pc.ip.nya.vodka.zone;
+            zoneTemplate = ../../../dns/lab.ip.nya.vodka.zone;
             serialTimestamp = lib.strings.trim (
               builtins.readFile (
                 pkgs.runCommand "zone-serial" { } ''

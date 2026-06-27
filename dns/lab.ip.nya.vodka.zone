@@ -1,0 +1,83 @@
+$TTL 3600
+$ORIGIN lab.ip.nya.vodka.
+
+@               IN      SOA     dns4.lab.ip.nya.vodka. admin.nya.vodka. (
+                serial-number
+                3600
+                1800
+                604800
+                86400 )
+
+@               IN      NS      dns1.lab.ip.nya.vodka.
+@               IN      NS      dns2.lab.ip.nya.vodka.
+@               IN      NS      dns3.lab.ip.nya.vodka.
+@               IN      NS      dns4.lab.ip.nya.vodka.
+@               IN      NS      dns5.lab.ip.nya.vodka.
+@               IN      NS      dns6.lab.ip.nya.vodka.
+
+; legacy
+opnsense        IN      A       10.42.0.1
+
+dns-1           IN      A       10.42.0.2
+dns-2           IN      A       10.42.0.3
+dns-3           IN      A       10.42.0.4
+dns-4           IN      A       10.42.0.5
+dns-5           IN      A       10.42.0.6
+dns-6           IN      A       10.42.0.7
+
+pxe             IN      A       10.42.0.8
+
+mtk             IN      A       10.42.0.10
+
+vpn1            IN      A       10.42.0.19
+vpn2            IN      A       10.42.0.20
+
+db1             IN      A       10.42.0.21
+db2             IN      A       10.42.0.22
+db3             IN      A       10.42.0.23
+
+docker-1        IN      A       10.42.0.31
+docker-2        IN      A       10.42.0.32
+
+mc-prod         IN      A       10.42.0.40
+mc-test         IN      A       10.42.0.41
+
+postgres        IN      A       10.42.0.50
+immich          IN      A       10.42.0.55
+
+hachi           IN      A       10.42.0.66
+ntfy            IN      A       10.42.0.67
+
+jellyfin        IN      A       10.42.0.70
+
+forgejo         IN      A       10.42.0.71
+prometheus      IN      A       10.42.0.72
+ash             IN      A       10.42.0.73
+
+hydra           IN      A       10.42.0.103
+
+pbx             IN      A       10.42.0.198
+paperless       IN      A       10.42.0.213
+
+router                  IN        AAAA        fd00:420:1::1
+cerberus                IN        AAAA        fd00:420:2::1
+
+dns1                    IN        AAAA        fd00:420:1:d::1
+dns2                    IN        AAAA        fd00:420:1:d::2
+dns3                    IN        AAAA        fd00:420:1:d::3
+dns4                    IN        AAAA        fd00:420:1:d::4
+dns5                    IN        AAAA        fd00:420:1:d::5
+dns6                    IN        AAAA        fd00:420:1:d::6
+
+vpn1                    IN        AAAA        fd00:420:1:45::1
+vpn2                    IN        AAAA        fd00:420:1:45::2
+
+docker1                 IN        AAAA        fd00:420:1:dc::1
+docker2                 IN        AAAA        fd00:420:1:dc::2
+
+db1                     IN        AAAA        fd00:420:1:db::1
+db2                     IN        AAAA        fd00:420:1:db::2
+db3                     IN        AAAA        fd00:420:1:db::3
+
+mc-prod                 IN        AAAA        fd00:420:1:1::40
+mc-test                 IN        AAAA        fd00:420:1:1::41

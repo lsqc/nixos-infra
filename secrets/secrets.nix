@@ -5,20 +5,30 @@ let
   ];
 
   # systems
-  immich =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDTiP3yLx64FJgzjiqMFYUtmtDneUFtri6VNxaYlR4zB";
+  immich = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDTiP3yLx64FJgzjiqMFYUtmtDneUFtri6VNxaYlR4zB";
 
-  hachi =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOjLW6Lac1Fz+AF6SHYuomvAY3Z0333Yoi4HAy1Ra47J";
+  hachi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOjLW6Lac1Fz+AF6SHYuomvAY3Z0333Yoi4HAy1Ra47J";
+
+  prometheus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA6tyB0ewv946ARed8n4UungdAizVLHK99aEkmpitk7C";
 
   # lxcs
-  postgres1 =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIRjf6aP4hkuda6RbNV//Zzo7jiLFEoqEJaLSGVHDJXq";
-in {
+  postgres1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIRjf6aP4hkuda6RbNV//Zzo7jiLFEoqEJaLSGVHDJXq";
+in
+{
   "immich-db.age".publicKeys = lsqc ++ [ immich ];
   "forgejo-mailer-password.age".publicKeys = lsqc ++ [ hachi ];
-  "postgres-immich-pw.age".publicKeys = lsqc ++ [ immich postgres1 ];
-  "postgres-postgres-pw.age".publicKeys = lsqc ++ [ immich postgres1 ];
+  "postgres-immich-pw.age".publicKeys = lsqc ++ [
+    immich
+    postgres1
+  ];
+  "postgres-postgres-pw.age".publicKeys = lsqc ++ [
+    immich
+    postgres1
+  ];
+
+  "grafana-secret-key.age" = {
+    publicKeys = lsqc ++ [ prometheus ];
+  };
 
   "armored-secret.age" = {
     publicKeys = [ lsqc ];

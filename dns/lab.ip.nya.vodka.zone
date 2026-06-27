@@ -62,6 +62,13 @@ paperless       IN      A       10.42.0.213
 router                  IN        AAAA        fd00:420:1::1
 cerberus                IN        AAAA        fd00:420:2::1
 
+pve-alpha               IN        AAAA        fd00:420:1::a
+pve-beta                IN        AAAA        fd00:420:1::b
+pve-gamma               IN        AAAA        fd00:420:1::c
+pve-delta               IN        AAAA        fd00:420:1::d
+
+pve-c240                IN        AAAA        fd00:420:1::c240
+
 dns1                    IN        AAAA        fd00:420:1:d::1
 dns2                    IN        AAAA        fd00:420:1:d::2
 dns3                    IN        AAAA        fd00:420:1:d::3
@@ -81,3 +88,4 @@ db3                     IN        AAAA        fd00:420:1:db::3
 
 mc-prod                 IN        AAAA        fd00:420:1:1::40
 mc-test                 IN        AAAA        fd00:420:1:1::41
+

@@ -62,6 +62,8 @@ paperless       IN      A       10.42.0.213
 router                  IN        AAAA        fd00:420:1::1
 cerberus                IN        AAAA        fd00:420:2::1
 
+mtk-core                IN        AAAA        fd00:420:1:1::2
+
 pve-alpha               IN        AAAA        fd00:420:1::a
 pve-beta                IN        AAAA        fd00:420:1::b
 pve-gamma               IN        AAAA        fd00:420:1::c
@@ -79,6 +81,9 @@ dns6                    IN        AAAA        fd00:420:1:d::6
 vpn1                    IN        AAAA        fd00:420:1:45::1
 vpn2                    IN        AAAA        fd00:420:1:45::2
 
+forgejo                 IN        AAAA        fd00:420:1:ff::1
+forgejo-nix             IN        AAAA        fd00:420:1:ff::2
+
 docker1                 IN        AAAA        fd00:420:1:dc::1
 docker2                 IN        AAAA        fd00:420:1:dc::2
 
@@ -89,3 +94,6 @@ db3                     IN        AAAA        fd00:420:1:db::3
 mc-prod                 IN        AAAA        fd00:420:1:1::40
 mc-test                 IN        AAAA        fd00:420:1:1::41
 
+prometheus              IN        AAAA        fd00:420:1:e::1
+legacy-influxdb         IN        CNAME       docker1
+legacy-grafana          IN        CNAME       docker1

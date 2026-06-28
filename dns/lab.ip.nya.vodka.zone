@@ -45,12 +45,13 @@ mc-test         IN      A       10.42.0.41
 postgres        IN      A       10.42.0.50
 immich          IN      A       10.42.0.55
 
+forgejo         IN      A       10.42.0.64
+
 hachi           IN      A       10.42.0.66
 ntfy            IN      A       10.42.0.67
 
 jellyfin        IN      A       10.42.0.70
 
-forgejo         IN      A       10.42.0.71
 prometheus      IN      A       10.42.0.72
 ash             IN      A       10.42.0.73
 

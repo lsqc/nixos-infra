@@ -15,6 +15,7 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
+    kirikae.url = "git+https://git.sr.ht/~xqtc/kirikae";
   };
 
   outputs =
@@ -27,9 +28,10 @@
       ...
     }:
     let
-
       system = "x86_64-linux";
+      lib = nixpkgs.lib;
       pkgs = import nixpkgs { inherit system; };
+      config = import ./common/config.nix;
 
       commonModules = [
         agenix.nixosModules.default
@@ -182,6 +184,23 @@
             agenix.nixosModules.default
           ];
         };
+      };
+
+      kirikae = {
+        hosts = {
+          prometheus = {
+            targetHost = "${config.mkLabFQDN "prometheus"}";
+            targetUser = "root";
+          };
+        };
+      };
+
+      devShells.x86_64-linux.default = pkgs.mkShell {
+        shellHook = "${lib.getExe pkgs.nushell}";
+        nativeBuildInputs = [
+          inputs.kirikae.packages.x86_64-linux.default
+          pkgs.just
+        ];
       };
     };
 }

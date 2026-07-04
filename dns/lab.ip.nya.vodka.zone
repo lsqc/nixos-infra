@@ -55,6 +55,10 @@ jellyfin        IN      A       10.42.0.70
 prometheus      IN      A       10.42.0.72
 ash             IN      A       10.42.0.73
 
+kanidm          IN      A       10.42.0.77
+
+db1             IN      A       10.42.0.99
+
 hydra           IN      A       10.42.0.103
 
 pbx             IN      A       10.42.0.198
@@ -87,6 +91,8 @@ forgejo-nix             IN        AAAA        fd00:420:1:ff::2
 
 docker1                 IN        AAAA        fd00:420:1:dc::1
 docker2                 IN        AAAA        fd00:420:1:dc::2
+
+kanidm                  IN        AAAA        fd00:420:1:1d::1
 
 db1                     IN        AAAA        fd00:420:1:db::1
 db2                     IN        AAAA        fd00:420:1:db::2

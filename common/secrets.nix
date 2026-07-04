@@ -11,5 +11,17 @@
       owner = "grafana";
       group = "grafana";
     };
+    kanidm-admin-password = {
+      file = ../secrets/kanidm-admin-password.age;
+      owner = "kanidm";
+      group = "kanidm";
+      mode = "0400";
+    };
+    kanidm-idm-admin-password = {
+      file = ../secrets/kanidm-idm-admin-password.age;
+      owner = "kanidm";
+      group = "kanidm";
+      mode = "0400";
+    };
   };
 }

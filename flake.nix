@@ -123,6 +123,15 @@
             ./hosts/vm/ash/disko-config.nix
           ];
         };
+        kanidm = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = commonModules ++ [
+
+            ./hosts/vm/kanidm
+            ./hosts/vm/kanidm/disko.nix
+          ];
+        };
         #
         # Configurations for non-virtualized systems
         #
@@ -190,7 +199,20 @@
         hosts = {
           prometheus = {
             targetHost = "${config.mkLabFQDN "prometheus"}";
-            targetUser = "root";
+          };
+          kanidm = {
+            targetHost = "${config.mkLabFQDN "kanidm"}";
+          };
+
+          #dns
+          dns1 = {
+            targetHost = "${config.mkLabFQDN "dns4"}";
+          };
+          dns2 = {
+            targetHost = "${config.mkLabFQDN "dns5"}";
+          };
+          dns3 = {
+            targetHost = "${config.mkLabFQDN "dns6"}";
           };
         };
       };

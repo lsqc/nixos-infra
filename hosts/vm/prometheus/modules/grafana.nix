@@ -13,7 +13,6 @@
         domain = "grafana.pc.nya.vodka";
         http_port = 3000;
         http_addr = "::";
-
       };
       analytics.reporting_enabled = false;
     };

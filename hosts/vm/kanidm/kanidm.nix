@@ -52,6 +52,30 @@ in
           present = true;
         };
       };
+
+      groups = {
+        "forgejo-users" = {
+          members = [ "lsqc" ];
+          present = true;
+        };
+      };
+
+      systems.oauth2 = {
+        "git.nya.vodka" = {
+          displayName = "Forgejo";
+          imageFile = ../../../assets/forgejo-logo.svg;
+          originUrl = "https://git.nya.vodka/user/oauth2/kanidm/callback";
+          originLanding = "https://git.nya.vodka/";
+
+          scopeMaps = {
+            "forgejo-users" = [
+              "openid"
+              "email"
+              "profile"
+            ];
+          };
+        };
+      };
     };
   };
 

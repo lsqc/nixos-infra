@@ -5,8 +5,8 @@
 }:
 
 let
+  cfg = import ../../../common/config.nix;
   certDir = "/var/lib/kanidm/tls";
-  domain = "id.nya.vodka";
 in
 {
   services.kanidm = {
@@ -15,9 +15,9 @@ in
     server = {
       enable = true;
       settings = {
-        inherit domain;
-        origin = "https://${domain}";
 
+        domain = "${cfg.domains.services.oauth}";
+        origin = "${cfg.oauth.baseUrl}";
         bindaddress = "0.0.0.0:8443";
 
         tls_chain = "${certDir}/chain.pem";
@@ -35,7 +35,7 @@ in
 
     client = {
       enable = true;
-      settings.uri = "https://${domain}";
+      settings.uri = "${cfg.oauth.baseUrl}";
     };
 
     provision = {
@@ -49,19 +49,23 @@ in
         "lsqc" = {
           displayName = "lsqc";
           mailAddresses = [ "lsqc@nya.vodka" ];
-          present = true;
         };
       };
 
       groups = {
         "forgejo-users" = {
           members = [ "lsqc" ];
-          present = true;
+        };
+        "grafana-users" = {
+          members = [ "lsqc" ];
+        };
+        "grafana-admins" = {
+          members = [ "lsqc" ];
         };
       };
 
       systems.oauth2 = {
-        "git.nya.vodka" = {
+        "forgejo" = {
           displayName = "Forgejo";
           imageFile = ../../../assets/forgejo-logo.svg;
           originUrl = "https://git.nya.vodka/user/oauth2/kanidm/callback";
@@ -72,6 +76,26 @@ in
               "openid"
               "email"
               "profile"
+            ];
+          };
+        };
+
+        "grafana" = {
+          displayName = "Grafana";
+          originUrl = "https://grafana.lab.nya.vodka/login/generic_oauth";
+          originLanding = "https://grafana.lab.nya.vodka/";
+          scopeMaps = {
+            "grafana-users" = [
+              "openid"
+              "email"
+              "profile"
+              "groups"
+            ];
+            "grafana-admins" = [
+              "openid"
+              "email"
+              "profile"
+              "groups"
             ];
           };
         };
@@ -94,7 +118,7 @@ in
           -keyout ${certDir}/key.pem \
           -out ${certDir}/chain.pem \
           -days 3650 -nodes \
-          -subj "/CN=${domain}"
+          -subj "/CN=${cfg.domains.services.oauth}"
       fi
       chown -R kanidm:kanidm ${certDir}
       chmod 600 ${certDir}/key.pem

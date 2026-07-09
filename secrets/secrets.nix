@@ -31,15 +31,14 @@ in
     publicKeys = lsqc ++ [ prometheus ];
   };
 
+  "grafana-oauth-secret.age" = {
+    publicKeys = lsqc ++ [ prometheus ];
+  };
+
   "kanidm-admin-password.age" = {
     publicKeys = lsqc ++ [ kanidm ];
   };
   "kanidm-idm-admin-password.age" = {
     publicKeys = lsqc ++ [ kanidm ];
-  };
-
-  "armored-secret.age" = {
-    publicKeys = [ lsqc ];
-    armor = true;
   };
 }

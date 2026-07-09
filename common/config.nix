@@ -2,6 +2,9 @@ rec {
   domains = {
     lab = "lab.ip.nya.vodka";
     hz = "hz.ip.nya.vodka";
+    services = {
+      oauth = "id.nya.vodka";
+    };
   };
 
   networks = {
@@ -11,6 +14,10 @@ rec {
       "fd00:420:3::/48"
       "fd00:420:99::/48"
     ];
+  };
+
+  oauth = {
+    baseUrl = "https://${domains.services.oauth}";
   };
 
   mkLabFQDN = host: "${host}.${domains.lab}";

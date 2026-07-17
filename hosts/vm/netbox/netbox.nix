@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  services.netbox = {
+    enable = true;
+  };
+}

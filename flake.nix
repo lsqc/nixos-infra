@@ -214,6 +214,9 @@
           dns3 = {
             targetHost = "${config.mkLabFQDN "dns6"}";
           };
+          netbox = {
+            targetHost = "${config.mkLabFQDN "netbox"}";
+          };
         };
       };
 

@@ -5,6 +5,7 @@
 {
   imports = [
     ./hardware.nix
+    ./netbox.nix
   ];
 
   networking = {

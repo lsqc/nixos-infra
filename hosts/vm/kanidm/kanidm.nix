@@ -69,7 +69,7 @@ in
           displayName = "Forgejo";
           imageFile = ../../../assets/forgejo-logo.svg;
           originUrl = "https://git.nya.vodka/user/oauth2/kanidm/callback";
-          originLanding = "https://git.nya.vodka/";
+          originLanding = "https://git.nya.vodka/user/oauth2/kanidm";
 
           scopeMaps = {
             "forgejo-users" = [
@@ -84,7 +84,7 @@ in
           displayName = "Grafana";
           imageFile = ../../../assets/grafana-logo.svg;
           originUrl = "https://grafana.lab.nya.vodka/login/generic_oauth";
-          originLanding = "https://grafana.lab.nya.vodka/";
+          originLanding = "https://grafana.lab.nya.vodka/login/generic_oauth";
           scopeMaps = {
             "grafana-users" = [
               "openid"

@@ -1,5 +1,9 @@
 {
-  disko.devices = {
+  lib,
+  ...
+}:
+{
+  disko.devices = lib.mkDefault {
     disk = {
       sda = {
         type = "disk";
@@ -31,4 +35,3 @@
     };
   };
 }
-

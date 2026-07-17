@@ -43,7 +43,7 @@
   };
 
   networking.firewall = {
-    enable = true;
+    enable = lib.mkDefault true;
     allowedTCPPorts = lib.mkDefault [ 22 ];
   };
   system.stateVersion = "26.05";

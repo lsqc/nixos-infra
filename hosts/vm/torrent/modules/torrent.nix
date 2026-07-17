@@ -10,6 +10,9 @@
     };
   };
 
-  systemd.services.flood.serviceConfig.SupplementaryGroups =
-    [ config.services.transmission.group ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "pnpm-9.15.9"
+  ];
+
+  systemd.services.flood.serviceConfig.SupplementaryGroups = [ config.services.transmission.group ];
 }

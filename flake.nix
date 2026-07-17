@@ -36,11 +36,15 @@
       commonModules = [
         agenix.nixosModules.default
         disko.nixosModules.disko
+
+        ./common/disko/generic-efi.nix
+      ];
+      commonVmModules = commonModules ++ [
+        ./common/vm.nix
       ];
     in
     {
       nixosConfigurations = {
-
         #
         # Configurations for vms and lxcs
         #
@@ -77,9 +81,7 @@
         hydra = nixpkgs.lib.nixosSystem {
           inherit system;
 
-          modules = commonModules ++ [
-
-            ./hosts/vm/hydra/disko-config.nix
+          modules = commonVmModules ++ [
             ./hosts/vm/hydra
           ];
         };
@@ -87,49 +89,47 @@
         torrent = nixpkgs.lib.nixosSystem {
           inherit system;
 
-          modules = commonModules ++ [
-
+          modules = commonVmModules ++ [
             ./hosts/vm/torrent
-            ./hosts/vm/torrent/disko-config.nix
           ];
         };
 
         hachi = nixpkgs.lib.nixosSystem {
           inherit system;
 
-          modules = commonModules ++ [
-
+          modules = commonVmModules ++ [
             ./hosts/vm/hachi
-            ./hosts/vm/hachi/disko-config.nix
           ];
         };
 
         prometheus = nixpkgs.lib.nixosSystem {
           inherit system;
 
-          modules = commonModules ++ [
+          modules = commonVmModules ++ [
 
             ./hosts/vm/prometheus
-            ./hosts/vm/prometheus/disko-config.nix
           ];
         };
 
         ash = nixpkgs.lib.nixosSystem {
           inherit system;
 
-          modules = commonModules ++ [
-
+          modules = commonVmModules ++ [
             ./hosts/vm/ash
-            ./hosts/vm/ash/disko-config.nix
+          ];
+        };
+        netbox = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = commonVmModules ++ [
+            ./hosts/vm/netbox
           ];
         };
         kanidm = nixpkgs.lib.nixosSystem {
           inherit system;
 
-          modules = commonModules ++ [
-
+          modules = commonVmModules ++ [
             ./hosts/vm/kanidm
-            ./hosts/vm/kanidm/disko.nix
           ];
         };
         #

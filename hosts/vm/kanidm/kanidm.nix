@@ -70,6 +70,7 @@ in
           imageFile = ../../../assets/forgejo-logo.svg;
           originUrl = "https://git.nya.vodka/user/oauth2/kanidm/callback";
           originLanding = "https://git.nya.vodka/user/oauth2/kanidm";
+          preferShortUsername = true;
 
           scopeMaps = {
             "forgejo-users" = [
@@ -85,6 +86,8 @@ in
           imageFile = ../../../assets/grafana-logo.svg;
           originUrl = "https://grafana.lab.nya.vodka/login/generic_oauth";
           originLanding = "https://grafana.lab.nya.vodka/login/generic_oauth";
+          preferShortUsername = true;
+
           scopeMaps = {
             "grafana-users" = [
               "openid"

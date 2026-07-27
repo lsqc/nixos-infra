@@ -11,12 +11,6 @@
       owner = "grafana";
       group = "grafana";
     };
-    grafana-oauth-secret = {
-      file = ../secrets/grafana-oauth-secret.age;
-      owner = "grafana";
-      group = "grafana";
-      mode = "0400";
-    };
     kanidm-admin-password = {
       file = ../secrets/kanidm-admin-password.age;
       owner = "kanidm";
@@ -27,6 +21,18 @@
       file = ../secrets/kanidm-idm-admin-password.age;
       owner = "kanidm";
       group = "kanidm";
+      mode = "0400";
+    };
+    netbox-api-token-peppers = {
+      file = ../secrets/netbox-api-token-peppers.age;
+      owner = "netbox";
+      group = "netbox";
+      mode = "0400";
+    };
+    netbox-secret-key = {
+      file = ../secrets/netbox-secret-key.age;
+      owner = "netbox";
+      group = "netbox";
       mode = "0400";
     };
   };

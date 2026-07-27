@@ -47,4 +47,13 @@ in
       };
     };
   };
+
+  age.secrets = {
+    grafana-oauth-secret = {
+      file = ../../../../secrets/grafana-oauth-secret.age;
+      owner = "grafana";
+      group = "grafana";
+      mode = "0400";
+    };
+  };
 }

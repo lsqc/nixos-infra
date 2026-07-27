@@ -62,12 +62,15 @@ in
         "grafana-admins" = {
           members = [ "lsqc" ];
         };
+        "nextcloud-admins" = {
+          members = [ "lsqc" ];
+        };
       };
 
       systems.oauth2 = {
         "forgejo" = {
           displayName = "Forgejo";
-          imageFile = ../../../assets/forgejo-logo.svg;
+          imageFile = ../../../assets/kanidm-logos/forgejo-logo.svg;
           originUrl = "https://git.nya.vodka/user/oauth2/kanidm/callback";
           originLanding = "https://git.nya.vodka/user/oauth2/kanidm";
           preferShortUsername = true;
@@ -83,9 +86,10 @@ in
 
         "grafana" = {
           displayName = "Grafana";
-          imageFile = ../../../assets/grafana-logo.svg;
+          imageFile = ../../../assets/kanidm-logos/grafana-logo.svg;
           originUrl = "https://grafana.lab.nya.vodka/login/generic_oauth";
           originLanding = "https://grafana.lab.nya.vodka/login/generic_oauth";
+          basicSecretFile = config.age.secrets.grafana-oauth-secret.path;
           preferShortUsername = true;
 
           scopeMaps = {
@@ -103,7 +107,38 @@ in
             ];
           };
         };
+        "nextcloud" = {
+          displayName = "Nextcloud";
+          imageFile = ../../../assets/kanidm-logos/nextcloud-logo.svg;
+          originUrl = "https://cloud.pc.lsdevcloud.net/apps/user_oidc/code";
+          originLanding = "https://cloud.pc.lsdevcloud.net/apps/user_oidc/code";
+          basicSecretFile = config.age.secrets.nextcloud-oauth-secret.path;
+          preferShortUsername = true;
+
+          scopeMaps = {
+            "nextcloud-admins" = [
+              "openid"
+              "email"
+              "profile"
+            ];
+          };
+        };
       };
+    };
+  };
+
+  age.secrets = {
+    nextcloud-oauth-secret = {
+      file = ../../../secrets/nextcloud-oauth-secret.age;
+      owner = "kanidm";
+      group = "kanidm";
+      mode = "0400";
+    };
+    grafana-oauth-secret = {
+      file = ../../../secrets/grafana-oauth-secret.age;
+      owner = "kanidm";
+      group = "kanidm";
+      mode = "0400";
     };
   };
 

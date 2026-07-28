@@ -111,7 +111,7 @@ in
           displayName = "Nextcloud";
           imageFile = ../../../assets/kanidm-logos/nextcloud-logo.svg;
           originUrl = "https://cloud.pc.lsdevcloud.net/apps/user_oidc/code";
-          originLanding = "https://cloud.pc.lsdevcloud.net/apps/user_oidc/code";
+          originLanding = "https://cloud.pc.lsdevcloud.net/apps/user_oidc/login/1";
           basicSecretFile = config.age.secrets.nextcloud-oauth-secret.path;
           preferShortUsername = true;
 

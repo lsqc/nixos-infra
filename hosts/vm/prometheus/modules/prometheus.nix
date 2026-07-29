@@ -22,6 +22,7 @@ in
               "${config.mkLabFQDN "ash"}:9092"
               "${config.mkLabFQDN "paperless"}:9092"
               "${config.mkLabFQDN "elasticsearch"}:9092"
+              "${config.mkLabFQDN "kanidm"}:9092"
             ];
           }
         ];

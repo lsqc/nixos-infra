@@ -118,6 +118,7 @@
             ./hosts/vm/ash
           ];
         };
+
         netbox = nixpkgs.lib.nixosSystem {
           inherit system;
 
@@ -125,11 +126,20 @@
             ./hosts/vm/netbox
           ];
         };
+
         kanidm = nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = commonVmModules ++ [
             ./hosts/vm/kanidm
+          ];
+        };
+
+        elasticsearch = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = commonVmModules ++ [
+            ./hosts/vm/elasticsearch
           ];
         };
         #
@@ -216,6 +226,9 @@
           };
           netbox = {
             targetHost = "${config.mkLabFQDN "netbox"}";
+          };
+          elasticsearch = {
+            targetHost = "${config.mkLabFQDN "elasticsearch"}";
           };
         };
       };

@@ -46,6 +46,33 @@ in
         allow_assign_grafana_admin = true;
       };
     };
+
+    provision = {
+
+      enable = true;
+      datasources.settings = {
+        apiVersion = 1;
+
+        datasources = [
+          {
+            name = "prometheus";
+            type = "prometheus";
+            url = "http://[::1]:9090";
+            isDefault = true;
+          }
+        ];
+      };
+      dashboards.settings = {
+        apiVersion = 1;
+
+        providers = [
+          {
+            name = "default";
+            options.path = "/var/lib/grafana/dashboards";
+          }
+        ];
+      };
+    };
   };
 
   age.secrets = {

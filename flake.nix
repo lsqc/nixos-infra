@@ -217,6 +217,7 @@
           netbox.targetHost = "${config.mkLabFQDN "netbox"}";
           elasticsearch.targetHost = "${config.mkLabFQDN "elasticsearch"}";
           ash.targetHost = "${config.mkLabFQDN "ash"}";
+          hachi.targetHost = "${config.mkLabFQDN "hachi"}";
         };
       };
 

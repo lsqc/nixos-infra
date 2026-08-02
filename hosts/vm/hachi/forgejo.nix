@@ -3,19 +3,8 @@
 let
   cfg = config.services.forgejo;
   srv = cfg.settings.server;
-in {
-  # services.nginx = {
-
-  #   virtualHosts.${cfg.settings.server.DOMAIN} = {
-  #     forceSSL = true;
-  #     enableACME = false;
-  #     extraConfig = ''
-  #       client_max_body_size 512M;
-  #     '';
-  #     locations."/".proxyPass = "http://localhost:${toString srv.HTTP_PORT}";
-  #   };
-  # };
-
+in
+{
   services.forgejo = {
     enable = true;
     database.type = "mysql";
@@ -28,7 +17,9 @@ in {
         HTTP_PORT = 3000;
         SSH_PORT = lib.head config.services.openssh.ports;
       };
-      service = { DISABLE_REGISTRATION = false; };
+      service = {
+        DISABLE_REGISTRATION = false;
+      };
       actions = {
         ENABLED = true;
         DEFAULT_ACTIONS_URL = "github";
@@ -39,7 +30,9 @@ in {
         FROM = "noreply@${srv.DOMAIN}";
         USER = "noreply@${srv.DOMAIN}";
       };
-      migrations = { ALLOWED_DOMAINS = "*.nya.vodka"; };
+      migrations = {
+        ALLOWED_DOMAINS = "*.nya.vodka";
+      };
     };
     secrets = {
       mailer.PASSWD = config.age.secrets.forgejo-mailer-password.path;
@@ -47,7 +40,7 @@ in {
   };
 
   age.secrets.forgejo-mailer-password = {
-    file = ../../../../secrets/forgejo-mailer-password.age;
+    file = ../../../secrets/forgejo-mailer-password.age;
     mode = "400";
     owner = "forgejo";
   };

@@ -2,13 +2,9 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ../../../common
-    ../../../common/vm.nix
-    ../../../common/grub-uefi.nix
-    ../../../common/prometheus-exporter.nix
+    ./hardware.nix
 
-    ./modules
+    ./forgejo.nix
   ];
 
   networking = {
@@ -16,11 +12,10 @@
 
     firewall = {
       enable = true;
-      # port 3000 required for reverse proxy
-      allowedTCPPorts = [ 22 80 443 3000 ];
+      allowedTCPPorts = [
+        22
+        3000
+      ];
     };
   };
-
-  time.timeZone = "Europe/Berlin";
-
 }

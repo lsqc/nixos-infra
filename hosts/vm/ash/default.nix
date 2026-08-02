@@ -1,31 +1,17 @@
 {
-  config,
-  lib,
-  pkgs,
   ...
 }:
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ../../../common
-    ../../../common/vm.nix
-    ../../../common/grub-uefi.nix
-    ../../../common/prometheus-exporter.nix
+    ./hardware.nix
 
-    ./modules
+    ./acme.nix
+    ./mastodon.nix
+    ./networking.nix
   ];
 
   networking = {
     hostName = "ash";
-
-    # firewall = {
-    #   enable = true;
-    #   allowedTCPPorts = [ 22 80 443 ];
-    # };
   };
-
-  # time.timeZone = "Europe/Berlin";
-
-  # system.stateVersion = "25.05";
 }

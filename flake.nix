@@ -207,29 +207,16 @@
 
       kirikae = {
         hosts = {
-          prometheus = {
-            targetHost = "${config.mkLabFQDN "prometheus"}";
-          };
-          kanidm = {
-            targetHost = "${config.mkLabFQDN "kanidm"}";
-          };
+          prometheus.targetHost = "${config.mkLabFQDN "prometheus"}";
+          kanidm.targetHost = "${config.mkLabFQDN "kanidm"}";
 
           #dns
-          dns1 = {
-            targetHost = "${config.mkLabFQDN "dns4"}";
-          };
-          dns2 = {
-            targetHost = "${config.mkLabFQDN "dns5"}";
-          };
-          dns3 = {
-            targetHost = "${config.mkLabFQDN "dns6"}";
-          };
-          netbox = {
-            targetHost = "${config.mkLabFQDN "netbox"}";
-          };
-          elasticsearch = {
-            targetHost = "${config.mkLabFQDN "elasticsearch"}";
-          };
+          dns1.targetHost = "${config.mkLabFQDN "dns4"}";
+          dns2.targetHost = "${config.mkLabFQDN "dns5"}";
+          dns3.targetHost = "${config.mkLabFQDN "dns6"}";
+          netbox.targetHost = "${config.mkLabFQDN "netbox"}";
+          elasticsearch.targetHost = "${config.mkLabFQDN "elasticsearch"}";
+          ash.targetHost = "${config.mkLabFQDN "ash"}";
         };
       };
 

@@ -23,6 +23,7 @@ in
               "${config.mkLabFQDN "paperless"}:9092"
               "${config.mkLabFQDN "elasticsearch"}:9092"
               "${config.mkLabFQDN "kanidm"}:9092"
+              "${config.mkLabFQDN "nova"}:9100"
 
               "${config.mkHzFQDN "cerberus"}:9100"
               "${config.mkHzFQDN "astolfo"}:9100"

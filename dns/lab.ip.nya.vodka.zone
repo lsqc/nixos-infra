@@ -29,6 +29,8 @@ pxe             IN      A       10.42.0.8
 
 mtk             IN      A       10.42.0.10
 
+nova            IN      A       10.42.0.12
+
 vpn1            IN      A       10.42.0.19
 vpn2            IN      A       10.42.0.20
 

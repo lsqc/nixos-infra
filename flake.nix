@@ -135,7 +135,7 @@
           ];
         };
 
-        elasticsearch = nixpkgs.lib.nixosSystem {
+        elasticsearch1 = nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = commonVmModules ++ [
@@ -215,7 +215,10 @@
           dns2.targetHost = "${config.mkLabFQDN "dns5"}";
           dns3.targetHost = "${config.mkLabFQDN "dns6"}";
           netbox.targetHost = "${config.mkLabFQDN "netbox"}";
-          elasticsearch.targetHost = "${config.mkLabFQDN "elasticsearch"}";
+          elasticsearch = {
+            flakeOutput = "elasticsearch1";
+            targetHost = "${config.mkLabFQDN "elasticsearch"}";
+          };
           ash.targetHost = "${config.mkLabFQDN "ash"}";
           hachi.targetHost = "${config.mkLabFQDN "hachi"}";
         };

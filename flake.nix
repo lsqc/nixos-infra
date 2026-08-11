@@ -165,15 +165,6 @@
           ];
         };
 
-        cheese = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = commonModules ++ [
-
-            ./hosts/hw/x86_64/cheese
-          ];
-        };
-
         # aarch64 systems
         pi = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";

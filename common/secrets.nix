@@ -22,17 +22,5 @@
       group = "kanidm";
       mode = "0400";
     };
-    netbox-api-token-peppers = {
-      file = ../secrets/netbox-api-token-peppers.age;
-      owner = "netbox";
-      group = "netbox";
-      mode = "0400";
-    };
-    netbox-secret-key = {
-      file = ../secrets/netbox-secret-key.age;
-      owner = "netbox";
-      group = "netbox";
-      mode = "0400";
-    };
   };
 }

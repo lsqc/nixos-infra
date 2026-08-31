@@ -12,8 +12,6 @@ let
   prometheus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA6tyB0ewv946ARed8n4UungdAizVLHK99aEkmpitk7C";
   kanidm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEip/cONgfa7qqVOtK11/lR47e+5Rq/ouXX5d9PoOKvu";
 
-  netbox = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHqKJBqhpUk/iNkLtlunJlVRGSJAcv+WCSB6DxqNOy/C";
-
   # lxcs
   postgres1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIRjf6aP4hkuda6RbNV//Zzo7jiLFEoqEJaLSGVHDJXq";
 in
@@ -45,12 +43,6 @@ in
   };
   "kanidm-idm-admin-password.age" = {
     publicKeys = lsqc ++ [ kanidm ];
-  };
-  "netbox-api-token-peppers.age" = {
-    publicKeys = lsqc ++ [ netbox ];
-  };
-  "netbox-secret-key.age" = {
-    publicKeys = lsqc ++ [ netbox ];
   };
   "nextcloud-oauth-secret.age" = {
     publicKeys = lsqc ++ [ kanidm ];

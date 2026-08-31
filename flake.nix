@@ -124,6 +124,8 @@
         prometheus = nixpkgs.lib.nixosSystem {
           inherit system;
 
+          specialArgs = { inherit hosts; };
+
           modules = commonVmModules ++ [
 
             ./hosts/vm/prometheus

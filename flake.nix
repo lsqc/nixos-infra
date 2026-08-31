@@ -146,7 +146,7 @@
           ];
         };
 
-        elasticsearch1 = nixpkgs.lib.nixosSystem {
+        elasticsearch = nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = commonVmModules ++ [
@@ -222,7 +222,7 @@
           };
           ash.targetHost = "${config.mkLabFQDN "ash"}";
           hachi.targetHost = "${config.mkLabFQDN "hachi"}";
-          velocity.targetHost = "10.42.0.171";
+          velocity.targetHost = "${hosts.lab.velocity.ipv4}";
         };
       };
 

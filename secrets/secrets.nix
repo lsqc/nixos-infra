@@ -14,6 +14,8 @@ let
 
   # lxcs
   postgres1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIRjf6aP4hkuda6RbNV//Zzo7jiLFEoqEJaLSGVHDJXq";
+
+  velocity = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFYktHpPuisWun7EjV+qoBfpyJqeAJG/ymVJw66guE9V";
 in
 {
   "immich-db.age".publicKeys = lsqc ++ [ immich ];
@@ -46,5 +48,8 @@ in
   };
   "nextcloud-oauth-secret.age" = {
     publicKeys = lsqc ++ [ kanidm ];
+  };
+  "luckperms-config.age" = {
+    publicKeys = lsqc ++ [ velocity ];
   };
 }

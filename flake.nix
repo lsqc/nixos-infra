@@ -16,6 +16,8 @@
       url = "github:NixOS/nixos-hardware/master";
     };
     kirikae.url = "git+https://git.sr.ht/~xqtc/kirikae";
+
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
   outputs =
@@ -25,6 +27,7 @@
       agenix,
       disko,
       nixos-hardware,
+      nix-minecraft,
       ...
     }:
     let
@@ -32,6 +35,7 @@
       lib = nixpkgs.lib;
       pkgs = import nixpkgs { inherit system; };
       config = import ./common/config.nix;
+      hosts = import ./hosts.nix;
 
       commonModules = [
         agenix.nixosModules.default
@@ -78,6 +82,21 @@
           modules = commonModules ++ [ ./hosts/lxc/paperless ];
         };
 
+        velocity = nixpkgs.lib.nixosSystem {
+
+          inherit system;
+          specialArgs = {
+            inherit hosts;
+          };
+          modules = commonModules ++ [
+            ./hosts/lxc/mc/velocity
+            nix-minecraft.nixosModules.minecraft-servers
+            {
+              nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+            }
+          ];
+        };
+
         hydra = nixpkgs.lib.nixosSystem {
           inherit system;
 
@@ -116,14 +135,6 @@
 
           modules = commonVmModules ++ [
             ./hosts/vm/ash
-          ];
-        };
-
-        netbox = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = commonVmModules ++ [
-            ./hosts/vm/netbox
           ];
         };
 
@@ -205,13 +216,13 @@
           dns1.targetHost = "${config.mkLabFQDN "dns4"}";
           dns2.targetHost = "${config.mkLabFQDN "dns5"}";
           dns3.targetHost = "${config.mkLabFQDN "dns6"}";
-          netbox.targetHost = "${config.mkLabFQDN "netbox"}";
           elasticsearch = {
             flakeOutput = "elasticsearch1";
             targetHost = "${config.mkLabFQDN "elasticsearch"}";
           };
           ash.targetHost = "${config.mkLabFQDN "ash"}";
           hachi.targetHost = "${config.mkLabFQDN "hachi"}";
+          velocity.targetHost = "10.42.0.171";
         };
       };
 

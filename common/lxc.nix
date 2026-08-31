@@ -1,14 +1,17 @@
-{ lib, modulesPath, ... }:
+{ modulesPath, ... }:
 
 {
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
+
     ./default.nix
+    ./prometheus-exporter.nix
   ];
 
   nix.settings = {
     sandbox = false;
   };
+
   proxmoxLXC = {
     manageNetwork = false;
     privileged = false;

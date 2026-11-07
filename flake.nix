@@ -172,23 +172,11 @@
         #
         # Configurations for non-virtualized systems
         #
-
-        gemini = nixpkgs.lib.nixosSystem {
+        yuuri = nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = commonModules ++ [
-
-            ./hosts/hw/x86_64/gemini
-          ];
-        };
-
-        testbox = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = commonModules ++ [
-
-            ./hosts/hw/x86_64/testbox
-            ./hosts/hw/x86_64/testbox/disko-config.nix
+            ./hosts/hw/x86_64/yuuri
           ];
         };
 
@@ -199,6 +187,14 @@
           modules = [
             agenix.nixosModules.default
             ./hosts/hw/aarch64/pi
+          ];
+        };
+        pi2 = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+
+          modules = [
+            agenix.nixosModules.default
+            ./hosts/hw/aarch64/pi2
           ];
         };
 

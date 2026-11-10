@@ -4,8 +4,9 @@
   services.forgejo = {
     enable = true;
     settings = {
-      server = {
+      server = rec {
         DOMAIN = "git.nya.vodka";
+        ROOT_URL = "https://${DOMAIN}";
       };
     };
   };

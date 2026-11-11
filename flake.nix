@@ -46,6 +46,10 @@
 
         ./common/disko/generic-efi.nix
       ];
+
+      yuuriModules = commonModules ++ [
+        ./hosts/yuuri/common
+      ];
       commonVmModules = commonModules ++ [
         ./common/vm.nix
       ];
@@ -100,6 +104,17 @@
           ];
         };
 
+        # yuuri hosts
+        caddy = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = yuuriModules ++ [ ./hosts/yuuri/caddy ];
+        };
+        forgejo = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = yuuriModules ++ [ ./hosts/yuuri/forgejo ];
+        };
+
+        # vms
         hydra = nixpkgs.lib.nixosSystem {
           inherit system;
 

@@ -1,4 +1,4 @@
-# nixos-infra
+# nixos-infra (deprecated)
 
 flake providing the configurations for my personal infrastructure
 
